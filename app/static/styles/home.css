@@ -1,0 +1,84 @@
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden; 
+    color: aliceblue;
+}
+
+.navbar {
+    
+    height: 50px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 100;
+}
+
+.video-background {
+    position: fixed; /* Fixes the video in place */
+    top: 0;
+    left: 0;
+    min-width: 100%; 
+    min-height: 100%;
+    width: auto; 
+    height: auto;
+    z-index: -1; 
+}
+
+
+
+.video-background iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100vh;
+    width: auto;
+    height: auto;
+    z-index: -1;
+   
+
+    
+}
+
+.content {
+    position: relative;
+    z-index: 1;
+    color: orange;
+    align-items: center;
+    margin: 30% 0;
+    /* Your content styles here */
+}
+
+.content h1{
+    font-size: 100px;
+    margin: 0 20%;
+  
+}
+
+#more{
+    display: none;
+    margin: 10px 40px;
+}
+button{
+   
+    color: orange;
+    border: 2px solid orange; 
+    margin-left: 40%;
+    background-color: transparent;
+    height: 40px;
+    width: 120px;
+    border-radius: 20px;
+
+}
+
+span{
+    color: white;
+    width: 600px;
+   
+}
+
+

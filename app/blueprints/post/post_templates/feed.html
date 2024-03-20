@@ -1,0 +1,33 @@
+{%extends "base.html"%}
+
+{%block title%}
+feed
+{%endblock%}     
+
+{%include './includes/nav.html'%}
+{%block styles%}
+<link rel="stylesheet" href="../static/styles/feed.css">
+{%endblock%} 
+
+
+{% block content%}
+{%for post in posts%}
+
+<div class="kard">
+  <div class="card">
+    <img src="{{post.img_url}}" class="card_img" alt="{{post.caption}}">
+    <div class="card_body">
+      <h5 class="caption">{{post.caption}}</h5>
+      <p class="location">{{post.location}}</p>
+      <p class="time">{{post.author.username}} - {{ moment(post.date).fromNow() }}</p>
+      {%if current_user.id == post.user_id %}
+      <div class="edit">
+      <a href="{{url_for('post.edit_post', post_id=post.id)}}" class="btn text-info">Edit</a>
+      <a href="{{url_for('post.delete_post', post_id=post.id)}}" class="btn text-danger">Delete</a>
+    </div>
+      {%endif%}
+    </div>
+  </div>
+</div>
+{%endfor%}
+{%endblock%}

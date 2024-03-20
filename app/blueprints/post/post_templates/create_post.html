@@ -1,0 +1,37 @@
+{%extends "base.html"%}
+
+{%block title%}
+
+Creat  post
+
+{%endblock%}  
+
+{%block styles%}
+<link rel="stylesheet" href="../static/styles/signup.css">
+{%endblock%} 
+
+{% block content%}
+{%include './includes/nav.html'%}
+
+    <form method="post">
+      {{form.hidden_tag()}}
+      <h1>create post</h1>
+      <div class="main"></div>
+        <div class="mb-3">
+          <label for="img_url" class="form-label">image address</label>
+          {{form.img_url(class="form-control", id="img_url")}}
+        </div>
+        <div class="mb-3">
+          <label for="caption" class="form-label">description</label>
+          {{form.caption(class="form-control", id="caption")}}
+        </div>
+        <div class="mb-3">
+            <label for="location" class="form-label">Location</label>
+            {{form.location(class="form-control", id="location")}}
+          </div>
+         
+        {{form.submit_btn(class="btn ")}}
+      </div>
+      </form>
+
+      {%endblock%}

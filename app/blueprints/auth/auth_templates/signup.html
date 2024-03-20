@@ -1,0 +1,41 @@
+{% extends "base.html"%}
+
+{%block title%}
+sign up
+{%endblock%}
+{%block styles%}
+<link rel="stylesheet" href="../static/styles/signup.css">
+{%endblock%} 
+
+{%include './includes/nav.html'%}
+    {%block content%}
+
+    <form method="POST">
+      {{form.hidden_tag()}}
+      <h1>signup here</h1>
+    <div class="main">
+      <div class="mb-3">
+          <label for="username" class="form-label">Username</label>
+         {{form.username(class="form-control", id="username", placeholder="username")}}        
+        </div>
+        <div class="mb-3">
+          <label for="city" class="form-label">City</label>
+         {{form.city(class="form-control", id="city", placeholder="city")}}        
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email address</label>
+          {{form.email(class="form-control", id="email", placeholder="email")}}
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          {{form.password(class="form-control", id="password", placeholder="password")}}
+
+        </div>
+    
+      {{form.submit_btn (class="btn ")}}
+    </div>
+      </form>
+
+
+ {%endblock%}
+

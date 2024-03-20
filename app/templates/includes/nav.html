@@ -1,0 +1,72 @@
+
+<nav class="navbar navbar-expand-lg ">
+    <div class="container-fluid">
+      <a class="navbar-brand text-warning" href="#"><img style="width: 80px; height: 20p;" src="https://www.pngall.com/wp-content/uploads/5/Golden-State-Warriors-PNG-Image.png" alt=""></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation" style="background-color: orange;">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+     
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active text-white" aria-current="page"href="{{url_for('main.home') }}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active text-white" aria-current="page" href="{{url_for('main.players')}}">players</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active text-white" aria-current="page" href="{{url_for('main.roster')}}">Roster</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active text-white" aria-current="page" href="{{url_for('main.schedule')}}">Schedule</a>
+          </li>
+         
+          <li class="nav-item">
+            <a class="nav-link active text-white" aria-current="page" href="{{url_for('post.feed')}}">feed</a>
+          </li>
+          
+          {% if current_user.is_anonymous%}
+          <li class="nav-item">
+            <a class="nav-link active text-white" aria-current="page" href="{{url_for('auth.signup')}}">Sign up</a>
+          </li>
+         
+          <li class="nav-item">
+            <a class="nav-link active text-white" aria-current="page" href="{{url_for('auth.login')}}">Login</a>
+          </li>
+          
+          {%else%}
+        
+         
+          <li class="nav-item">
+            <a class="nav-link active text-white" aria-current="page" href="{{url_for('post.create_post')}}">create_post</a>
+          </li>
+         
+          <li class="nav-item">
+            <a class="nav-link active text-white" aria-current="page" href="{{url_for('auth.logout')}}">Logout</a>
+          </li>
+          {%endif%}
+        </ul>
+        
+      
+        
+      </div>
+    
+    </div>
+
+    {% if current_user.is_authenticated%}
+
+    <h5 class="mr-1">{{current_user.username}}</h5>
+    {%endif%}
+</nav>
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+  
+  {% for category, message in messages %}
+  <div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+    {{message}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  {% endfor %}
+
+{% endif %}
+{% endwith %}

@@ -1,0 +1,57 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: "Roboto", sans-serif;
+}
+
+
+body{
+   background-color: black;
+   
+   
+}
+
+
+.kard{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    
+
+}
+
+.card{
+    width: 400px;
+    height: auto;
+    margin: 20px;
+    background-color: transparent;
+    backdrop-filter: blur(20px);
+}
+
+
+.card_body{
+    margin: 0 0 20px 0;
+
+}
+
+
+.time, .location, .caption{
+    font-size: 19px;   
+    padding: 0;
+    margin: 5px 15px;
+    color: orange;
+   }
+
+.edit{
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+margin:10px 15px;
+}
+
+.btn{
+
+backdrop-filter: blur(100px);
+box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+
+}

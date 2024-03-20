@@ -1,0 +1,53 @@
+{%extends "base.html"%}
+
+{%block title%}
+
+roster
+{%endblock%}   
+
+{%block styles%}
+<link rel="stylesheet" href="../static/styles/roster.css">
+{%endblock%}
+
+{%include './includes/nav.html'%}
+
+{% block content%}
+<h1>Golden State Warriors Roster 2023-24</h1>
+
+
+{% if players %}
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col"></th>
+        <th scope="col">NAME</th>
+        <th scope="col">POS</th>
+      
+        <th scope="col">AGE</th>
+        <th scope="col">HT</th>
+        <th scope="col">WT</th>
+        <th scope="col">COLLEGE</th>
+        <th scope="col">SALARY</th>
+        
+    </tr>
+    </thead>
+    <tbody>
+    {%for player in players%}
+    <tr>
+        <th scope="row"><img style="width:100px; border-radius: 50%;" src="{{player.get('headshot', {}).get('href', 'No Image URL')}}" alt="{{player['fullName']}}"></th>
+
+        <td>{{player['fullName']}} <SUp>{{player['jersey'] }}</SUp> </td> 
+        <td>{{player.get('position', {}).get('abbreviation', '--')}}</td>
+        <td>{{player.get('age', 'Unknown') }}</td>
+        <td>{{player.get('displayHeight', '--')}}</td>
+        <td>{{player.get('weight', '--')}} lbs</td>
+        <td>{{player.get('college', {}).get('name', '--')  }}</td>
+        <td>${{player.get('contract', {}).get('salary', '--')  }}</td>
+
+    </tr>
+    {%endfor%}
+
+    </tbody>
+</table>
+{%endif%}
+{%endblock%}

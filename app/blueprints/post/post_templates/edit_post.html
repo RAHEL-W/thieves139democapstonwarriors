@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}
+Edit  Post
+{% endblock %}
+
+
+{%block styles%}
+<link rel="stylesheet" href="../static/styles/login.css">
+{%endblock%} 
+
+{% block content %}
+{% include './includes/nav.html' %}
+
+<form method="post">
+    {{ form.hidden_tag() }}
+    <div class="mb-3">
+        <label for="img_url" class="form-label">Image Address</label>
+        {{ form.img_url(class="form-control", id="img_url") }}
+    </div>
+    <div class="mb-3">
+        <label for="caption" class="form-label">Description</label>
+        {{ form.caption(class="form-control", id="caption") }}
+    </div>
+    <div class="mb-3">
+        <label for="location" class="form-label">Location</label>
+        {{ form.location(class="form-control", id="location") }}
+    </div>
+    {{ form.submit_btn(class="btn btn-primary", value= 'update  post') }}
+</form>
+
+{% endblock %}

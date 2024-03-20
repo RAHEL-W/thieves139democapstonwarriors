@@ -1,0 +1,19 @@
+body {
+    background-color: black; /* Body background color */
+    color: white; /* Body text color */
+}
+h1{
+    color: orange;
+    margin-left: 10rem;
+}
+
+/* Override Bootstrap table styles */
+.table {
+    background-color: black !important; /* Change the table background */
+    color: white !important; /* Change the table text color */
+}
+
+.table th, .table td {
+    background-color: transparent !important; /* Keep cells transparent or set a color */
+    color: white !important; /* Change the cell text color */
+}

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}
+home
+{% endblock %}  
+
+{% block styles %}
+<link rel="stylesheet" href="../static/styles/home.css">
+{% endblock %}   
+
+{% include './includes/nav.html' %}
+
+{% block content %}
+<div class="video-background">
+    <iframe src="https://www.youtube.com/embed/ZiMK6RHDFDc?autoplay=1&mute=1&controls=0&loop=1&playlist=ZiMK6RHDFDc" frameborder="0" allowfullscreen></iframe>
+</div>
+
+<div class="content">
+    <h1>WARRIORS</h1>
+    <div id="more" style="display: none;"> 
+        <span>The Golden State Warriors, established in 1946 as the Philadelphia Warriors, are a prominent NBA team now based in San Francisco. Initially in Philadelphia, they won championships in 1947 and 1956, then relocated to San Francisco in 1962, eventually adopting the 'Golden State' name in 1971. The team experienced significant success with the Wilt Chamberlain era in the early 60s, then a championship in 1975, followed by a period of struggle. Revitalized in the 2010s, led by stars like Stephen Curry, they've won several more championships, becoming a dominant force in modern basketball The Warriors have won seven NBA championships, in 1947, 1956, 1975, 2015, 2017, 2018, and 2022. The Warriors are the third for both the most NBA championships and most Finals appearances; only the Los Angeles Lakers and Boston Celtics have more...</span>
+    </div>
+    <div class="buttons">
+        <button id="read" onclick="see_more()">SEE MORE</button>
+    </div>
+</div>
+<script type="text/javascript">
+function see_more() {
+    var moreContent = document.getElementById('more');
+    var btnText = document.getElementById('read');
+
+    if (moreContent.style.display === "none") {
+        moreContent.style.display = "block"; 
+        btnText.innerHTML = "SEE LESS";     
+    } else {
+        moreContent.style.display = "none";  
+        btnText.innerHTML = "SEE MORE";    
+    }
+}
+</script>
+{% endblock %}

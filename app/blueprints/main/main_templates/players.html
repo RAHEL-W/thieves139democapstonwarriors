@@ -1,0 +1,232 @@
+{%extends "base.html"%}
+
+{%block title%}
+
+home
+{%endblock%}  
+{%block styles%}
+<link rel="stylesheet" href="../static/styles/players.css">
+{%endblock%}   
+
+
+
+{% block content%}
+<header>
+    <div id="header">
+        <!-- <a href="#">home</a>
+        <a href="#">roster</a>
+        <a href="#">schadule</a>
+        <a href="#">status</a> -->
+        {%include './includes/nav.html'%}
+        
+    </div>
+</header>
+<body>
+
+
+    <div class="carousel ">
+        <div class="list">
+            <!-- items -->
+            <div class="item">
+                <img style="bottom: 0;" src="https://i.pinimg.com/736x/96/54/a7/9654a77558dbe1fdecde8f0e0e4ab5a0.jpg" alt="">
+                <div class="content">
+                    
+                    <div class="author">author</div>
+                    <div class="title">curry</div>
+                    <div class="topic">topic</div>
+                    <div class="dis">Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi perferendis ad velit totam ullam unde vitae voluptate culpa atque nesciunt rem, libero quis veniam ab molestiae voluptates reprehenderit eligendi ex.</div>
+                    <div class="buttons">
+                        <button>see more</button>
+                        <button>subscribe</button>
+                    </div>
+                </div>
+
+            </div>
+            <div class="item">
+                <img src="https://i.pinimg.com/736x/de/43/8c/de438c72d6f9f3ef74fde5a8aec0a3d3.jpg" alt="">
+                <div class="content">
+                    
+                    <div class="author">author</div>
+                    <div class="title">Klay Thompson</div>
+                    <div class="topic">topic</div>
+                    <div class="dis">Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi perferendis ad velit totam ullam unde vitae voluptate culpa atque nesciunt rem, libero quis veniam ab molestiae voluptates reprehenderit eligendi ex.</div>
+                    <div class="buttons">
+                        <button>see more</button>
+                        <button>subscribe</button>
+                    </div>
+                </div>
+
+            </div>
+            <div class="item">
+                <img src="https://www.usatoday.com/gcdn/presto/2022/06/11/USAT/c8c4ebbc-4d18-45fa-abfc-f0316310ffdc-2022-06-10_Draymond_Green.jpg?crop=1987,1490,x673,y76" alt="">
+                <div class="content">
+                    
+                    <div class="author">AUTHOR</div>
+                    <div class="title">Draymond Green</div>
+                    <div class="topic">TOPIC</div>
+                    <div class="dis">Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi perferendis ad velit totam ullam unde vitae voluptate culpa atque nesciunt rem, libero quis veniam ab molestiae voluptates reprehenderit eligendi ex <span id="dots">...</span>
+                        <span id="more">Lorem ipsum Earum neque laborum, eveniet tempora aliquid maiores quasi esse doloribus, sunt architecto mollitia. Temporibus adipisci officia possimus illum sapiente quia, at unde ex facere officiis repudiandae enim itaque expedita sint, voluptas reprehenderit consequatur neque iusto atque dolor! Fugit sit praesentium magni dolore, quisquam quasi vel earum temporibus adipisci libero dolor rem quidem ullam officia harum consectetur eligendi quos distinctio hic ratione molestiae qui sequi ad dolorem? Eos dicta quo vero facere error corporis ratione molestias reiciendis soluta deleniti modi natus fugiat illo, porro nam nemo magni inventore? Nam aliquam rerum molestiae beatae!</span>
+                    </div>
+                    <div class="buttons">
+                        <button id="read"  onclick="see_more()">SEE MORE</button>
+                        <button>SUBSCRIBE</button>
+                    </div>
+                </div>
+
+            </div>
+            <div class="item">
+                <img src="https://www.usatoday.com/gcdn/presto/2022/06/11/USAT/c8c4ebbc-4d18-45fa-abfc-f0316310ffdc-2022-06-10_Draymond_Green.jpg?crop=1987,1490,x673,y76" alt="">
+                <div class="content">
+                    
+                    <div class="author">AUTHOR</div>
+                    <div class="title">Draymond Green</div>
+                    <div class="topic">TOPIC</div>
+                    <div class="dis">Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi perferendis ad velit totam ullam unde vitae voluptate culpa atque nesciunt rem, libero quis veniam ab molestiae voluptates reprehenderit eligendi ex <span id="dots">...</span>
+                        <span id="more">Lorem ipsum Earum neque laborum, eveniet tempora aliquid maiores quasi esse doloribus, sunt architecto mollitia. Temporibus adipisci officia possimus illum sapiente quia, at unde ex facere officiis repudiandae enim itaque expedita sint, voluptas reprehenderit consequatur neque iusto atque dolor! Fugit sit praesentium magni dolore, quisquam quasi vel earum temporibus adipisci libero dolor rem quidem ullam officia harum consectetur eligendi quos distinctio hic ratione molestiae qui sequi ad dolorem? Eos dicta quo vero facere error corporis ratione molestias reiciendis soluta deleniti modi natus fugiat illo, porro nam nemo magni inventore? Nam aliquam rerum molestiae beatae!</span>
+                    </div>
+                    <div class="buttons">
+                        <button id="read"  onclick="see_more()">SEE MORE</button>
+                        <button>SUBSCRIBE</button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- thumbnail -->
+
+        <div class="thumbnail">
+           
+            <div class="item">
+                <img src="https://i.pinimg.com/736x/de/43/8c/de438c72d6f9f3ef74fde5a8aec0a3d3.jpg" alt="">
+                <div class="content">
+                 <div class="title">Klay Thompson</div>
+                    <div class="dis">GUARD</div>     
+               
+                </div>
+            </div>
+            <div class="item">
+                <img src="https://www.usatoday.com/gcdn/presto/2022/06/11/USAT/c8c4ebbc-4d18-45fa-abfc-f0316310ffdc-2022-06-10_Draymond_Green.jpg?crop=1987,1490,x673,y76" alt="">
+                <div class="content">
+                    <div class="title">Draymond Green</div>
+                    <div class="dis">FORWARD/CENTER</div>
+                </div>
+            </div>
+            <div class="item">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeFap0etPpQSlabN4MnoenYW1LwnwyuVUZiz9dM_PTtQ4gEsdksy1nxIGLRKxgzffawr8&usqp=CAU" alt="">
+                <div class="content">
+                    <div class="title">Jonathan Kuminga</div>
+                    <div class="dis">FORWARD</div>
+
+                </div>
+            </div>
+
+            <div class="item">
+                <img style="bottom: 0;"src="https://i.pinimg.com/736x/96/54/a7/9654a77558dbe1fdecde8f0e0e4ab5a0.jpg" alt="">
+                <div class="content">
+                    <div class="title">Stephen Curry</div>
+                    <div class="dis">GUARD</div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- arrows -->
+        <div class="arrows">
+            <button id="prev"><</button>
+            <button id="next">></button>
+        </div>
+
+        <!-- time of animation -->
+
+        <div class="time"></div>
+
+    </div>
+    
+
+
+
+
+
+
+
+
+
+
+
+    <script type="text/javascript">
+   
+   let nextDom = document.getElementById('next');
+let prevDom = document.getElementById('prev');
+let carouselDom =document.querySelector('.carousel');
+let listItemDom =document.querySelector('.carousel .list');
+let thumbnailDom = document.querySelector('.carousel .thumbnail')
+
+
+
+nextDom.onclick = function(){
+    showSlider('next');
+
+}
+
+prevDom.onclick =function(){
+    showSlider('prev')
+}
+
+let timeRunning = 3000;
+let timeAutoNext =7000;
+let runTimeOut;
+let runAutoRun = setTimeout( ()=>{
+    nextDom.click();
+}, timeAutoNext);
+
+function showSlider(type){
+    let itemSlider = document.querySelectorAll('.carousel .list .item');
+    let itemThumbnail = document.querySelectorAll('.carousel .thumbnail  .item');
+
+
+    if (type === 'next'){
+        listItemDom.appendChild(itemSlider[0]);
+        thumbnailDom.appendChild(itemThumbnail[0]);
+        carouselDom.classList.add('next');
+        
+    }
+    else{
+        let positionLastItem = itemSlider.length -1;
+        listItemDom.prepend(itemSlider[positionLastItem])
+        thumbnailDom.prepend(itemThumbnail[positionLastItem])  
+        carouselDom.classList.add('prev');
+    }
+    clearTimeout(runTimeOut);
+    runTimeOut = setTimeout(() =>{
+        carouselDom.classList.remove('next');
+        carouselDom.classList.remove('prev');
+    }, timeRunning)
+}
+
+
+clearTimeout(runAutoRun);
+runAutoRun = setTimeout( ()=>{
+    nextDom.click();
+}, timeAutoNext);
+
+
+let i=0;
+function see_more(){
+    if (!i){
+        document.getElementById('more').style. display="inline";
+        document.getElementById('dots').style. display="none";
+        document.getElementById('read').innerHTML = "SEE LESS";
+        i=1;
+    }
+    else{
+        document.getElementById('more').style. display="none";
+        document.getElementById('dots').style. display="inline";
+        document.getElementById('read').innerHTML = "SEE MORE";
+        i=0;
+    }
+}
+
+    </script>
+    {%endblock%}
