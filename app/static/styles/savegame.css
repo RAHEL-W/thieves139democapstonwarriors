@@ -1,0 +1,40 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: "Roboto", sans-serif;
+}
+
+
+body{
+   background-color: black;
+   
+   
+}
+
+
+
+.card{
+    width: 400px;
+    height: auto;
+    margin: 20px;
+    background-color: transparent;
+    backdrop-filter: blur(20px);
+    color: white;
+    border-color: azure;
+    display: flex;
+
+    flex-direction: row;
+}
+
+
+.image{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+image, img{
+    width: 100px;
+    height: 60px;
+
+}

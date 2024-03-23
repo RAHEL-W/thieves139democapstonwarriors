@@ -1,7 +1,7 @@
 from flask import render_template, redirect, url_for, flash
 import requests
 from . import main
-from app.models import User,db
+from app.models import User,db,SaveGame
 from flask_login import login_required, current_user
 from datetime import datetime
 
@@ -93,7 +93,7 @@ def schedule():
         for event in events:
             date_obj = datetime.strptime(event['date'], '%Y-%m-%dT%H:%M%SZ')
             event['formatted_date'] = date_obj.strftime('%d %b %Y')
-
+            
 
 
             game_played = False  # Flag to check if the game has been played
@@ -154,3 +154,102 @@ def schedule():
 
     return render_template('schedule.html', events=events)
   
+
+@main.route('/save_game/<date>')
+@login_required
+def save_game(date):
+    response = requests.get("https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/9/schedule")
+    if response.status_code == 200:
+        data = response.json()
+        events = data['events']
+        
+        running_wins = 0
+        running_losses = 0
+        selected_event = None
+        for event in events:
+            date_obj = datetime.strptime(event['date'], '%Y-%m-%dT%H:%M%SZ')
+            formatted_date = date_obj.strftime('%d %b %Y')
+            if formatted_date == date:
+                selected_event = event
+                break
+
+
+
+
+            game_played = False  # Flag to check if the game has been played
+            for competition in event['competitions']:
+                for competitor in competition['competitors']:
+                    if competitor['team']['abbreviation'] == 'GS':
+                        if 'winner' in competitor:
+                            game_played = True
+                            if competitor['winner']:
+                                running_wins += 1
+                            else:
+                                running_losses += 1
+
+            if game_played:
+                event['cumulative_wins'] = running_wins
+                event['cumulative_losses'] = running_losses
+            else:
+                event['cumulative_wins'] = ''
+                event['cumulative_losses'] = ''
+
+            
+            
+            competitions = event['competitions']
+            if competitions and len(competitions) > 0:
+                competitors = competitions[0]['competitors']
+
+                if 'score' in competitors[0] and 'score' in competitors[1]:
+                    event['homescore'] = get_score_as_int(competitors[0]['score']['value'])
+                    event['awayscore'] = get_score_as_int(competitors[1]['score']['value'])
+                else:
+                    # Assign empty string for upcoming games
+                    event['homescore'] = ''
+                    event['awayscore'] = ''
+                event['opponent'] = competitors[0]['team']['shortDisplayName'] if len(competitors) > 1 else ' '
+                event['opponent2'] = competitors[1]['team']['shortDisplayName'] if len(competitors) > 1 else ' '
+                event['opponent_img'] = competitors[0]['team']['logos'][0]['href'] if len(competitors) > 1 and len(competitors[0]['team']['logos']) > 0 else  ' '
+                event['opponent_img2'] = competitors[1]['team']['logos'][0]['href'] if len(competitors) > 1 and len(competitors[1]['team']['logos']) > 0 else ' '
+
+                event['high_points'] = event['high_points_name'] = event['high_assistance'] = event['high_assistance_name'] = event['high_rounds'] = event['high_rounds_name'] = ' '
+
+            
+                for competitor in competitors:
+                    leaders = competitor.get('leaders', [])
+                    for leader in leaders:
+                        if leader['name'] == 'points':
+                            event['high_points'] = get_score_as_int(leader['leaders'][0]['value']) if leader['leaders'] else ' '
+                            event['high_points_name'] = leader['leaders'][0]['athlete']['lastName'] if leader['leaders'] else ' '
+                        elif leader['name'] == 'assists':
+                            event['high_assistance'] = get_score_as_int(leader['leaders'][0]['value']) if leader['leaders'] else ' '
+                            event['high_assistance_name'] = leader['leaders'][0]['athlete']['lastName'] if leader['leaders'] else ' '
+                        elif leader['name'] == 'rebounds':
+                            event['high_rounds'] = get_score_as_int(leader['leaders'][0]['value']) if leader['leaders'] else ' '
+                            event['high_rounds_name'] = leader['leaders'][0]['athlete']['lastName'] if leader['leaders'] else ' '
+
+    if selected_event:
+     print(selected_event)
+     game = SaveGame.query.filter_by(date=date).first()
+    if not game:
+        new_Savegame = SaveGame(
+    date=date,
+    opponent=selected_event['competitions'][0]['competitors'][0]['team']['shortDisplayName'],
+    opponent2=selected_event['competitions'][0]['competitors'][1]['team']['shortDisplayName'],
+    opponent_img=selected_event['competitions'][0]['competitors'][0]['team']['logos'][0]['href'],
+    opponent_img2=selected_event['competitions'][0]['competitors'][1]['team']['logos'][0]['href'],
+    user_id=current_user.id
+        )
+        db.session.add(new_Savegame)
+        db.session.commit()
+    return redirect(url_for('main.schedule'))
+
+
+
+
+
+@main.route('/save')   
+def save():
+    SaveGames = SaveGame.query.all()
+    return render_template('savegame.html', SaveGames=SaveGames)
+

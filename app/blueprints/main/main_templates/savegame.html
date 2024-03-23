@@ -1,0 +1,34 @@
+{%extends "base.html"%}
+
+{%block title%}
+feed
+{%endblock%}     
+
+{%include './includes/nav.html'%}
+{%block styles%}
+<link rel="stylesheet" href="../static/styles/savegame.css">
+{%endblock%} 
+
+
+{% block content%}
+{%for SaveGame in SaveGames%}
+
+<div class="card text-center">
+    <div class="card-header">
+        {{SaveGame.date}}
+    </div>
+    <div class="card-body">
+        <div class="image">
+            <img src="{{SaveGame.opponent_img}}" alt="{{SaveGame.opponent}}">
+            <img src="{{SaveGame.opponent_img2}}" alt="{{SaveGame.opponent2}}">
+        </div>
+      <h5 class="card-title">{{SaveGame.opponent}}  {{SaveGame.opponent2}}</h5>
+     
+      <a href="#" class="btn btn-primary">invite frends</a>
+    </div>
+    <div class="card-footer text-body-secondary">
+      2 days ago
+    </div>
+  </div>
+{%endfor%}
+{%endblock%}

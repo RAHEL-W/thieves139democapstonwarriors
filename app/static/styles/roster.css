@@ -2,6 +2,9 @@ body {
     background-color: black; /* Body background color */
     color: white; /* Body text color */
 }
+
+
+
 h1{
     color: orange;
     margin-left: 10rem;
@@ -16,4 +19,17 @@ h1{
 .table th, .table td {
     background-color: transparent !important; /* Keep cells transparent or set a color */
     color: white !important; /* Change the cell text color */
+}
+
+button{
+    width: 100px;
+    height: 40px;
+    background-color: orange;
+   
+    border-radius: 10px;
+    
+}
+
+a{
+   border: none; 
 }

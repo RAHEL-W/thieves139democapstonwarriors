@@ -14,7 +14,7 @@ roster
 {% block content%}
 <h1>Golden State Warriors Schedule 2023-24</h1>
 
-<h3>Regular Season</h3>
+
 {% if events %}
 <table class="table">
     <thead>
@@ -41,7 +41,7 @@ roster
         <td>{{ event.high_points_name }} {{ event.high_points }}</td>
         <td>{{ event.high_rounds_name }} {{ event.high_rounds }}</td>
         <td>{{ event.high_assistance_name }}  {{ event.high_assistance }}</td>
-       
+         <td ><button><a href="{{ url_for('main.save_game', date=event.formatted_date) }}" class="btn my-btn">Save</a></button></td>
        
         
     </tr>
