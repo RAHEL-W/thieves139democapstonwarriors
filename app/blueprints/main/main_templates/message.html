@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}
+Chat
+{% endblock %}
+
+{% include './includes/nav.html' %}
+
+{% block content %}
+<div>
+    <select id="recipient-select">
+        {% for user in users %}
+        <option value="{{ user.id }}">{{ user.username }}</option>
+        {% endfor %}
+    </select>
+    <form id="chat-form">
+        <input type="text" id="message-input" placeholder="Enter your message">
+        <button type="submit">Send</button>
+    </form>
+    <div id="messages"></div>
+</div>
+
+<script>
+    var currentUserId; // Declare the variable first
+</script>
+
+<script>
+    // Assign Flask variable to JavaScript variable
+    currentUserId = {{ current_user.id | tojson }};
+</script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#chat-form').submit(function(e) {
+            e.preventDefault();
+            const message = $('#message-input').val();
+            const recipient_id = $('#recipient-select').val();
+            $.post('/send', { message: message, recipient_id: recipient_id }, function(response) {
+                if(response.status === 'success') {
+                    $('#message-input').val('');
+                    fetchMessages();
+                }
+            });
+        });
+
+        function fetchMessages() {
+        $.get('/receive', function(data) {
+            $('#messages').empty();
+            data.forEach(function(message) {
+                var displayMessage = (message.is_sender ? 'Me' : message.sender_username) +
+                                     ' : ' + message.text;
+                $('#messages').append('<div>' + displayMessage + '</div>');
+            });
+        });
+    }
+
+
+        setInterval(fetchMessages, 2000); // Fetch messages every 2 seconds
+    });
+</script>
+{% endblock %}

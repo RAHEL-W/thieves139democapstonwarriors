@@ -1,0 +1,35 @@
+{%extends "base.html"%}
+
+{%block title%}
+
+login
+{%endblock%}  
+
+{%block styles%}
+<link rel="stylesheet" href="../static/styles/login.css">
+{%endblock%}   
+
+
+{% block content%}
+{%include './includes/nav.html'%}
+
+    <form method="post">
+      {{form.hidden_tag()}}
+      <h1>login here</h1>
+      <div class="main">
+        <div class="mb-3">
+          <label for="email" class="form-label">Email address</label>
+          {{form.email(class="form-control", id="email", placeholder="email")}}
+        </div>
+        <div class="main">
+            <div class="mb-3">
+              <label for="caption" class="form-label">caption</label>
+              {{form.caption(class="form-control", id="caption")}}
+            </div>
+           
+        {{form.submit_btn(class="btn ")}}
+
+      </div>
+      </form>
+
+      {%endblock%}

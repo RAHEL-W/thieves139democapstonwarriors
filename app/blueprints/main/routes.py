@@ -1,10 +1,10 @@
-from flask import render_template, redirect, url_for, flash
+from flask import render_template, redirect, url_for, flash,request, jsonify
 import requests
 from . import main
-from app.models import User,db,SaveGame
+from app.models import User,db,SaveGame, UserInvitation, Message
 from flask_login import login_required, current_user
 from datetime import datetime
-
+from .forms import InviteForm
 
 @main.route('/')
 def home():
@@ -156,6 +156,7 @@ def schedule():
   
 
 @main.route('/save_game/<date>')
+
 @login_required
 def save_game(date):
     response = requests.get("https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/9/schedule")
@@ -248,8 +249,129 @@ def save_game(date):
 
 
 
-@main.route('/save')   
-def save():
-    SaveGames = SaveGame.query.all()
-    return render_template('savegame.html', SaveGames=SaveGames)
 
+
+
+@main.route('/invite/<save_game_date>', methods=["GET", "POST"])
+@login_required
+def invite(save_game_date):
+    form = InviteForm()
+
+    if request.method == "POST" and form.validate_on_submit():
+        # Find the specific SaveGame instance
+        save_game = SaveGame.query.filter_by(date=save_game_date).first_or_404()
+
+
+       
+        email = form.email.data
+        caption = form.caption.data
+        invited_by_user_id = current_user.id
+            
+            # Create a new UserInvitation with the SaveGame's date
+        new_user_invitation = UserInvitation(
+                email=email,
+                invited_by_user_id=invited_by_user_id,
+                caption=caption,
+                date=save_game.date, # Use the date from the specific SaveGame
+                opponent = save_game.opponent,
+                opponent2 = save_game.opponent2,
+                opponent_img = save_game.opponent_img,
+                opponent_img2 = save_game.opponent_img2
+            )
+        new_user_invitation.save()
+
+        flash('Successful! Invite sent.', 'success')
+
+        # else:
+        # flash('SaveGame not found.', 'error')
+
+        return redirect(url_for('main.save'))
+    else:
+        return render_template('invite.html', form=form, save_game_date=save_game_date)
+
+
+ 
+@main.route('/save') 
+@login_required  
+def save():
+    SaveGames = SaveGame.query.filter_by(user_id = current_user.id).all()
+    UserInvitations = UserInvitation.query.filter_by(email=current_user.email).all()
+    # invitegame= SaveGame.query.filter_by(date=date).all()
+    return render_template('savegame.html', SaveGames=SaveGames ,  UserInvitations=UserInvitations)
+
+
+
+@main.route('/delete_savegame/<save_game_date>')  
+@login_required
+def delete_savegame(save_game_date):
+    savegame = SaveGame.query.filter_by(date=save_game_date).first()
+    if savegame and savegame.user_id == current_user.id:
+        db.session.delete(savegame)
+        db.session.commit()
+        flash(' post is succefully deleted', 'danger')
+        return redirect(url_for('main.save'))
+    else:
+        flash('this post it doesn\'t belong to you','danger')
+        return redirect(url_for('main.save',save_game_date=save_game_date)) 
+    
+
+@main.route('/delete_invitation/<invitation_date>')  
+@login_required
+def delete_invitation(invitation_date):
+    invitation = UserInvitation.query.filter_by(date=invitation_date).first()
+    if invitation and invitation.email == current_user.email:
+        db.session.delete(invitation)
+        db.session.commit()
+        flash(' post is succefully deleted', 'danger')
+        return redirect(url_for('main.save'))
+    else:
+        flash('this post it doesn\'t belong to you','danger')
+        return redirect(url_for('main.save',invitation_date=invitation_date)) 
+
+
+messages = []
+
+@main.route('/send', methods=['POST'])
+@login_required
+def send():
+    recipient_id = request.form.get('recipient_id')
+    message_text = request.form.get('message')
+
+    if recipient_id and message_text:
+        message = Message(
+            sender_id=current_user.id,
+            recipient_id=recipient_id,
+            text=message_text
+        )
+        db.session.add(message)
+        db.session.commit()
+        return jsonify({'status': 'success', 'message': message_text})
+    return jsonify({'status': 'error', 'message': 'Missing recipient or message'})
+
+
+@main.route('/receive')
+@login_required
+def receive():
+    messages = Message.query.filter(
+        (Message.sender_id == current_user.id) | 
+        (Message.recipient_id == current_user.id)
+    ).join(User, User.id == Message.sender_id).add_columns(User.username).all()
+
+    messages_data = [{
+        'id': msg.Message.id,
+        'sender_id': msg.Message.sender_id, 
+        'sender_username': msg.username,
+        'recipient_id': msg.Message.recipient_id,
+        'text': msg.Message.text, 
+        'timestamp': msg.Message.timestamp.strftime("%Y-%m-%d %H:%M:%S"),
+        'is_sender': msg.Message.sender_id == current_user.id
+    } for msg in messages]
+
+    return jsonify(messages_data)
+
+@main.route('/chat')
+@login_required
+def chat():
+    users = User.query.filter(User.id != current_user.id).all()
+
+    return render_template('message.html', users=users)
