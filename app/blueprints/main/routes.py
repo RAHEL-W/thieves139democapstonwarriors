@@ -241,6 +241,7 @@ def save_game(date):
     opponent_img2=selected_event['competitions'][0]['competitors'][1]['team']['logos'][0]['href'],
     user_id=current_user.id
         )
+        flash('Successful! game save.', 'success')
         db.session.add(new_Savegame)
         db.session.commit()
     return redirect(url_for('main.schedule'))
@@ -308,10 +309,10 @@ def delete_savegame(save_game_date):
     if savegame and savegame.user_id == current_user.id:
         db.session.delete(savegame)
         db.session.commit()
-        flash(' post is succefully deleted', 'danger')
+        flash(' SAVEGAME is deleted', 'danger')
         return redirect(url_for('main.save'))
     else:
-        flash('this post it doesn\'t belong to you','danger')
+        flash('this SAVEGAME it doesn\'t belong to you','danger')
         return redirect(url_for('main.save',save_game_date=save_game_date)) 
     
 
@@ -322,10 +323,10 @@ def delete_invitation(invitation_date):
     if invitation and invitation.email == current_user.email:
         db.session.delete(invitation)
         db.session.commit()
-        flash(' post is succefully deleted', 'danger')
+        flash(' Invitation is succefully deleted', 'danger')
         return redirect(url_for('main.save'))
     else:
-        flash('this post it doesn\'t belong to you','danger')
+        flash('this INVITATION it doesn\'t belong to you','danger')
         return redirect(url_for('main.save',invitation_date=invitation_date)) 
 
 

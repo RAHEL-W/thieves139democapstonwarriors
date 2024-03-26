@@ -20,7 +20,7 @@ body{
     background-color: transparent;
     backdrop-filter: blur(20px);
     color: white;
-    border-color: azure;
+    border-color: orange;
     display: flex;
 
     flex-direction: row;

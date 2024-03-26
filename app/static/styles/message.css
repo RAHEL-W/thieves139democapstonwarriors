@@ -1,0 +1,126 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #171515;
+    color: #333;
+    line-height: 1.6;
+}
+.chat-container {
+    position: relative;
+
+    height: 100%; 
+
+}
+
+#messages {
+    height: calc(100% - 60px); 
+    overflow-y: auto;
+    padding-bottom: 70px; 
+    margin-bottom: 70px; 
+}
+#chat-form {
+   
+    position: fixed;
+    bottom: 0; 
+    left: 0; 
+    width: 100%; 
+
+    background: black;
+    padding: 10px;
+    border: 1px solid orange;
+    border-radius: 5px;
+    margin-bottom: 10px;
+
+}
+
+#message-input {
+    width: 90%;
+    padding: 10px;
+    border: 3px solid orange;
+    border-radius: 5px;
+    margin-right: 10px;
+    background-color: #171515;
+    border-radius: 20px;
+    color: white;
+}
+
+#recipient-select {
+    padding: 10px;
+    border: 1px solid orange;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    width: 100%;
+    background-color: #171515;
+    color: #ffa825;
+    
+
+}
+
+button {
+    background-color: black;
+    color: white;
+    padding: 10px 10px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: orange;
+    color: black;
+}
+
+
+
+#messages div {
+    margin-bottom: 10px;
+    padding: 10px;
+    background: #eee;
+    border-radius: 5px;
+}
+
+#messages div:nth-child(odd) {
+    background: #e1e1e1;
+}
+
+
+
+
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+
+
+
+
+
+
+.chat-container #messages div.sender {
+    border: 1px solid orange;
+    background-color: black; /* Example color, change as needed */
+    text-align: right;
+    color: white;
+    padding: 15px;
+    margin: 5px 0;
+    border-radius: 20px;
+    width: 50%;
+    float: right;
+    clear: both;
+}
+
+.chat-container #messages div.receiver {
+    background-color: #ffa825; /* Example color, change as needed */
+    border: 1px solid white;
+
+    text-align: left;
+    color: black;
+    padding: 15px;
+    margin: 5px 0;
+    border-radius: 20px;
+    width: 50%;
+    float: left;
+    clear: both;
+}

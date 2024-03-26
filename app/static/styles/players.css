@@ -11,24 +11,27 @@ body{
     color: white;
 }
 
- 
 .navbar{
-   
-
+    width: 1140px;
+    max-width: 80%;
+    margin: auto;
     height: 50px;
     display: flex;
     align-items: center;
     position: relative;
     z-index: 100;
+    /* background: transparent; */
 }
-
-
+.header a{
+    margin-left: 40px;
+    color: white;
+}
 
 .carousel{
     width: 100vw;
     height: 100vh;
     overflow: hidden;
-    margin-top: -50px;
+    /* margin-top: -50px; */
     position: relative;
     z-index: 1;
 }
@@ -41,13 +44,18 @@ body{
 
 
 
-.carousel .list .item img{
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    position: absolute;
-    top: 0;
 
+.carousel .list .item img{
+
+   height: auto;
+    object-fit: cover;
+    width: 100%;
+    position:absolute;
+    top: 0;
+    left: 0;
+    bottom: -50px;
+    border-radius: 0;
+    margin-bottom: -50px;
 }
 
 
@@ -105,8 +113,7 @@ body{
     letter-spacing: 3px;
     font-family: sans-serif;
     font-weight: 500;
-    border-radius: 40px;
-
+    border-radius: 10px;
 
 
 }
@@ -169,7 +176,7 @@ body{
 
 .arrows{
     position: absolute;
-    top: 85%;
+    top: 80%;
     right: 52%;
     width: 300px;
     max-width: 30%;
@@ -204,6 +211,7 @@ body{
 
 .carousel .list .item:nth-child(1){
     z-index: 1;
+  
 }
 
 
@@ -261,14 +269,19 @@ body{
 
 @keyframes showImage{
     to{
-        width: 100%;
         height: auto;
-        left: 0;
-        bottom: 0;
-        border-radius: 0;
+    object-fit: cover;
+    width: 100%;
+    position:absolute;
+    top: 0;
+    left: 0;
+    bottom: -50px;
+    border-radius: 0;
+   
+}
 
     }
-}
+
 
 
 
@@ -328,7 +341,7 @@ body{
         height: 220px;
         border-radius: 20px;
         left: 50%;
-        bottom: 50px;
+        /* bottom: 50px; */
     }
 } 
 

@@ -3,21 +3,29 @@
 {% block title %}
 Chat
 {% endblock %}
+{%block styles%}
+<link rel="stylesheet" href="../static/styles/message.css">
+{%endblock%}   
+
 
 {% include './includes/nav.html' %}
 
 {% block content %}
-<div>
+<div class="chat-container">
     <select id="recipient-select">
         {% for user in users %}
         <option value="{{ user.id }}">{{ user.username }}</option>
         {% endfor %}
     </select>
+    <div class="page">
+    
+    <div id="messages" class="clearfix"></div>
+
     <form id="chat-form">
         <input type="text" id="message-input" placeholder="Enter your message">
         <button type="submit">Send</button>
     </form>
-    <div id="messages"></div>
+</div>
 </div>
 
 <script>
@@ -45,15 +53,26 @@ Chat
         });
 
         function fetchMessages() {
-        $.get('/receive', function(data) {
-            $('#messages').empty();
-            data.forEach(function(message) {
-                var displayMessage = (message.is_sender ? 'Me' : message.sender_username) +
-                                     ' : ' + message.text;
-                $('#messages').append('<div>' + displayMessage + '</div>');
-            });
+    $.get('/receive', function(data) {
+        $('#messages').empty();
+        data.forEach(function(message) {
+            var messageText = message.is_sender ? (message.text + ' : Me') : (message.sender_username + ' : ' + message.text);
+            var messageClass = message.is_sender ? 'sender' : 'receiver';
+            var displayMessage = '<div class="' + messageClass + '">' + messageText + '</div>';
+            $('#messages').append(displayMessage);
         });
-    }
+        scrollToBottom(); // Scroll to the bottom after loading messages
+    });
+}
+function scrollToBottom() {
+    var messages = document.getElementById("messages");
+    messages.scrollTop = messages.scrollHeight;
+}
+
+document.addEventListener("DOMContentLoaded", scrollToBottom);
+
+// Call this function on page load and after fetching new messages
+document.addEventListener("DOMContentLoaded", scrollToBottom);
 
 
         setInterval(fetchMessages, 2000); // Fetch messages every 2 seconds

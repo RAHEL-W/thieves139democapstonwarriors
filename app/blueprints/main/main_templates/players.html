@@ -6,93 +6,285 @@ home
 {%endblock%}  
 {%block styles%}
 <link rel="stylesheet" href="../static/styles/players.css">
-{%endblock%}   
+{%endblock%}  
 
 
+{% include './includes/nav.html' %}
 
 {% block content%}
-<header>
-    <div id="header">
-        <!-- <a href="#">home</a>
-        <a href="#">roster</a>
-        <a href="#">schadule</a>
-        <a href="#">status</a> -->
-        {%include './includes/nav.html'%}
-        
-    </div>
-</header>
-<body>
 
 
-    <div class="carousel ">
-        <div class="list">
-            <!-- items -->
-            <div class="item">
-                <img style="bottom: 0;" src="https://i.pinimg.com/736x/96/54/a7/9654a77558dbe1fdecde8f0e0e4ab5a0.jpg" alt="">
-                <div class="content">
-                    
-                    <div class="author">author</div>
-                    <div class="title">curry</div>
-                    <div class="topic">topic</div>
-                    <div class="dis">Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi perferendis ad velit totam ullam unde vitae voluptate culpa atque nesciunt rem, libero quis veniam ab molestiae voluptates reprehenderit eligendi ex.</div>
-                    <div class="buttons">
-                        <button>see more</button>
-                        <button>subscribe</button>
+
+<div class="carousel ">
+    <div class="list">
+        <!-- items -->
+        <div class="item">
+            <img style="bottom: 0;" src="https://i.pinimg.com/736x/96/54/a7/9654a77558dbe1fdecde8f0e0e4ab5a0.jpg" alt="">
+            <div class="content">
+                
+                <div class="author">Player</div>
+                <div class="title">STEPHEN CURRY</div>
+                <div class="topic">30</div>
+                <div class="dis">Stephen Curry, born on March 14, 1988, in Akron, Ohio, is a revolutionary basketball player renowned for his extraordinary shooting ability. Playing for the Golden State Warriors in the NBA, he's considered one of<span id="dots">...</span> <span id="more">the greatest shooters in basketball history.
+                     Curry has won multiple MVP awards and led his team to several championships. His play style and proficiency from beyond the three-point line have significantly influenced the modern game.</samp>
                     </div>
-                </div>
-
-            </div>
-            <div class="item">
-                <img src="https://i.pinimg.com/736x/de/43/8c/de438c72d6f9f3ef74fde5a8aec0a3d3.jpg" alt="">
-                <div class="content">
-                    
-                    <div class="author">author</div>
-                    <div class="title">Klay Thompson</div>
-                    <div class="topic">topic</div>
-                    <div class="dis">Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi perferendis ad velit totam ullam unde vitae voluptate culpa atque nesciunt rem, libero quis veniam ab molestiae voluptates reprehenderit eligendi ex.</div>
-                    <div class="buttons">
-                        <button>see more</button>
-                        <button>subscribe</button>
-                    </div>
-                </div>
-
-            </div>
-            <div class="item">
-                <img src="https://www.usatoday.com/gcdn/presto/2022/06/11/USAT/c8c4ebbc-4d18-45fa-abfc-f0316310ffdc-2022-06-10_Draymond_Green.jpg?crop=1987,1490,x673,y76" alt="">
-                <div class="content">
-                    
-                    <div class="author">AUTHOR</div>
-                    <div class="title">Draymond Green</div>
-                    <div class="topic">TOPIC</div>
-                    <div class="dis">Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi perferendis ad velit totam ullam unde vitae voluptate culpa atque nesciunt rem, libero quis veniam ab molestiae voluptates reprehenderit eligendi ex <span id="dots">...</span>
-                        <span id="more">Lorem ipsum Earum neque laborum, eveniet tempora aliquid maiores quasi esse doloribus, sunt architecto mollitia. Temporibus adipisci officia possimus illum sapiente quia, at unde ex facere officiis repudiandae enim itaque expedita sint, voluptas reprehenderit consequatur neque iusto atque dolor! Fugit sit praesentium magni dolore, quisquam quasi vel earum temporibus adipisci libero dolor rem quidem ullam officia harum consectetur eligendi quos distinctio hic ratione molestiae qui sequi ad dolorem? Eos dicta quo vero facere error corporis ratione molestias reiciendis soluta deleniti modi natus fugiat illo, porro nam nemo magni inventore? Nam aliquam rerum molestiae beatae!</span>
-                    </div>
-                    <div class="buttons">
+                     <div class="buttons">
                         <button id="read"  onclick="see_more()">SEE MORE</button>
-                        <button>SUBSCRIBE</button>
+                        <button> <a style="text-decoration: none; color: white;" href="https://www.instagram.com/stephencurry30/">CONTACT</a></button>
                     </div>
-                </div>
-
-            </div>
-            <div class="item">
-                <img src="https://www.usatoday.com/gcdn/presto/2022/06/11/USAT/c8c4ebbc-4d18-45fa-abfc-f0316310ffdc-2022-06-10_Draymond_Green.jpg?crop=1987,1490,x673,y76" alt="">
-                <div class="content">
-                    
-                    <div class="author">AUTHOR</div>
-                    <div class="title">Draymond Green</div>
-                    <div class="topic">TOPIC</div>
-                    <div class="dis">Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi perferendis ad velit totam ullam unde vitae voluptate culpa atque nesciunt rem, libero quis veniam ab molestiae voluptates reprehenderit eligendi ex <span id="dots">...</span>
-                        <span id="more">Lorem ipsum Earum neque laborum, eveniet tempora aliquid maiores quasi esse doloribus, sunt architecto mollitia. Temporibus adipisci officia possimus illum sapiente quia, at unde ex facere officiis repudiandae enim itaque expedita sint, voluptas reprehenderit consequatur neque iusto atque dolor! Fugit sit praesentium magni dolore, quisquam quasi vel earum temporibus adipisci libero dolor rem quidem ullam officia harum consectetur eligendi quos distinctio hic ratione molestiae qui sequi ad dolorem? Eos dicta quo vero facere error corporis ratione molestias reiciendis soluta deleniti modi natus fugiat illo, porro nam nemo magni inventore? Nam aliquam rerum molestiae beatae!</span>
-                    </div>
-                    <div class="buttons">
-                        <button id="read"  onclick="see_more()">SEE MORE</button>
-                        <button>SUBSCRIBE</button>
-                    </div>
-                </div>
-
             </div>
 
         </div>
+        <div class="item">
+            <img src="https://i.pinimg.com/736x/de/43/8c/de438c72d6f9f3ef74fde5a8aec0a3d3.jpg" alt="">
+            <div class="content">
+                
+                <div class="author">Player</div>
+                <div class="title">KLAY THOMPSON</div>
+                <div class="topic">11</div>
+                <div class="dis">Klay Thompson, born on February 8, 1990, in Los Angeles, California, is a highly acclaimed shooting guard for the Golden State Warriors in the NBA. Known for his exceptional shooting skills, he's part of <span id="dots">...</span> 
+                    <span id="more">the "Splash Brothers" duo alongside Stephen Curry. Thompson has played a pivotal role in multiple NBA championships with the Warriors. His remarkable ability to score, especially from the three-point line, has made him one of the league's elite shooters.</samp>
+    
+                   </div>                
+                   <div class="buttons">
+                    <button id="read"  onclick="see_more()">SEE MORE</button>
+                    <button> <a style="text-decoration: none; color: white;" href="https://www.instagram.com/klaythompson/">CONTACT</a></button>
+                </div>
+            </div>
+
+        </div>
+        <div class="item">
+            <img src="https://www.usatoday.com/gcdn/presto/2022/06/11/USAT/c8c4ebbc-4d18-45fa-abfc-f0316310ffdc-2022-06-10_Draymond_Green.jpg?crop=1987,1490,x673,y76" alt="">
+            <div class="content">
+                
+                <div class="author">PLAYER</div>
+                <div class="title">DRAYMOND GREEN</div>
+                <div class="topic">23</div>
+                <div class="dis">Draymond Green, born on March 4, 1990, in Saginaw, Michigan, is a versatile forward for the Golden State Warriors in the NBA. Known for his defensive prowess and basketball IQ, he's a key playmaker and leader on the team. Green has been integral to the Warriors <span id="dots">...</span> 
+                    <span id="more"> multiple championship wins, contributing significantly on both ends of the court. His unique style of play blends defensive mastery with playmaking, earning him All-Star and All-Defensive Team honors.</samp>
+    
+                   </div> 
+                <div class="buttons">
+                    <button id="read"  onclick="see_more()">SEE MORE</button>
+                    <button> <a style="text-decoration: none; color: white;" href="https://www.instagram.com/money23green/">CONTACT</a></button>
+                </div>
+            </div>
+
+        </div>
+
+   
+
+        <div class="item">
+            <img src="http://res.cloudinary.com/ybmedia/image/upload/c_crop,h_1123,w_2000,x_0,y_0/c_fill,f_auto,h_900,q_auto,w_1600/v1/m/0/6/0616387fec3f0d98a1a9f7a123f4eaf53ea75e67/former-warriors-blast-jonathan-kuminga-over-rift.jpg" alt="">
+            <div class="content">
+                
+                <div class="author">PLAYER</div>
+                <div class="title">JONATHAN KUMINGA </div>
+                <div class="topic">00</div>
+                <div class="dis">Jonathan Kuminga, born on October 6, 2002, in the Democratic Republic of the Congo, is a talented forward for the Golden State Warriors in the NBA. Known for his athleticism and potential, he was a high-profile prospect from the G League Ignite team. Drafted 7th overall <span id="dots">...</span> 
+                    <span id="more"> in the 2021 NBA Draft, Kuminga has shown promising development in his early career. His blend of strength, agility, and skill earmarks him as a potential future star in the league.</samp>
+    
+                   </div> 
+                <div class="buttons">
+                    <button id="read"  onclick="see_more()">SEE MORE</button>
+                    <button> <a style="text-decoration: none; color: white;" href="https://www.instagram.com/jonathan_kuminga/">CONTACT</a></button>
+                </div>
+            </div>
+
+        </div>
+        <div class="item">
+            <img src="https://imengine.prod.srp.navigacloud.com/?uuid=38336138-3261-4438-a664-376365356261&type=primary&q=75&width=1024" alt="">
+            <div class="content">
+                
+                <div class="author">PLAYER</div>
+                <div class="title">CHRIS PAUL </div>
+                <div class="topic">3</div>
+                <div class="dis">Chris Paul, born on May 6, 1985, in Winston-Salem, North Carolina, is a highly respected point guard, currently playing for the Phoenix Suns in the NBA. Known for his exceptional basketball IQ and playmaking abilities, Paul has been a multiple-time NBA All-Star and an <span id="dots">...</span> 
+                    <span id="more"> All-NBA team selection. His leadership on and off the court has earned him the nickname "CP3". Throughout his career, Paul has been celebrated for his skill in orchestrating offense and his tenacious defense.
+                    </samp>
+    
+                   </div> 
+                <div class="buttons">
+                    <button id="read"  onclick="see_more()">SEE MORE</button>
+                    <button> <a style="text-decoration: none; color: white;" href="https://www.instagram.com/cp3/">CONTACT</a></button>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="item">
+            <img src="https://www.gannett-cdn.com/usatsimg/image/thumb/1200-1200nw/19822255.jpg" alt="">
+            <div class="content">
+                
+                <div class="author">PLAYER</div>
+                <div class="title">KEVON LOONEY </div>
+                <div class="topic">5</div>
+                <div class="dis">Kevon Looney, born on February 6, 1996, in Milwaukee, Wisconsin, is a solid and reliable center for the Golden State Warriors in the NBA. Known for his defensive capabilities and rebounding, he plays a crucial role in the Warriors' interior game. Drafted<span id="dots">...</span> 
+                    <span id="more"> 30th overall in 2015, Looney has developed into a key component of the team's success. His knack for making important plays, especially in clutch situations, enhances his value on the court.
+                    </samp>
+    
+                   </div> 
+                <div class="buttons">
+                    <button id="read"  onclick="see_more()">SEE MORE</button>
+                    <button> <a style="text-decoration: none; color: white;" href="https://www.instagram.com/looney/">CONTACT</a></button>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="item">
+            <img src="https://cdn.vox-cdn.com/thumbor/7E_9LTHAFT1TIHICfQu0ilLEKiw=/0x0:4829x3219/1200x800/filters:focal(2955x20:3727x792)/cdn.vox-cdn.com/uploads/chorus_image/image/70192247/1236784501.0.jpg" alt="">
+            <div class="content">
+                
+                <div class="author">PLAYER</div>
+                <div class="title">ANDREW WIGGINS </div>
+                <div class="topic">22</div>
+                <div class="dis">Andrew Wiggins, born on February 23, 1995, in Toronto, Canada, is a dynamic forward in the NBA, currently playing for the Golden State Warriors. Known for his athleticism and scoring ability, he was the first overall pick in the 2014 NBA Draft. Wiggins has evolved into a key player for the Warriors, contributing <span id="dots">...</span> 
+                    <span id="more"> significantly to their championship success. His development, particularly in defense and three-point shooting, has solidified his role as a versatile and impactful player in the league.
+                    </samp>
+    
+                   </div> 
+                <div class="buttons">
+                    <button id="read"  onclick="see_more()">SEE MORE</button>
+                    <button> <a style="text-decoration: none; color: white;" href="https://www.instagram.com/22wiggins/">CONTACT</a></button>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="item">
+            <img src="https://cdn.nba.com/teams/legacy/www.nba.com/warriors/sites/warriors/files/moody_1280_1.jpg" alt="">
+            <div class="content">
+                
+                <div class="author">PLAYER</div>
+                <div class="title">MOSES MOODY </div>
+                <div class="topic">4</div>
+                <div class="dis">Moses Moody, born on May 31, 2002, in Little Rock, Arkansas, is an emerging shooting guard for the Golden State Warriors in the NBA. Known for his shooting prowess and defensive potential, he was selected 14th overall in the 2021 NBA Draft. Moody, a product of the  <span id="dots">...</span> 
+                    <span id="more"> University of Arkansas, has shown promising flashes of becoming a significant contributor in the league. His combination of size, scoring ability, and defensive acumen positions him as a promising talent for the Warriors' future.
+                    </samp>
+    
+                   </div> 
+                <div class="buttons">
+                    <button id="read"  onclick="see_more()">SEE MORE</button>
+                    <button> <a style="text-decoration: none; color: white;" href="https://www.instagram.com/mosesmoody/">CONTACT</a></button>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="item">
+            <img src="https://images2.minutemediacdn.com/image/fetch/https%3A%2F%2Fraptorsrapture.com%2Fwp-content%2Fuploads%2Fgetty-images%2F2021%2F12%2F1353521287.jpeg" alt="">
+            <div class="content">
+                
+                <div class="author">PLAYER</div>
+                <div class="title">GARY PAYTON II </div>
+                <div class="topic">0</div>
+                <div class="dis">Gary Payton II, born on December 1, 1992, in Seattle, Washington, is a tenacious guard known for his defensive skills, currently playing for the Golden State Warriors in the NBA. The son of NBA legend Gary Payton, he has carved out his own identity with standout defense and athleticism. Undrafted in 2016, Payton II's journey through various <span id="dots">...</span> 
+                    <span id="more"> teams and the G League exemplifies his perseverance and hard work. His ability to guard multiple positions and contribute in key moments has made him a valuable asset to the Warriors.
+                    </samp>
+    
+                   </div> 
+                <div class="buttons">
+                    <button id="read"  onclick="see_more()">SEE MORE</button>
+                    <button> <a style="text-decoration: none; color: white;" href="https://www.instagram.com/garydwayne/">CONTACT</a></button>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="item">
+            <img src="https://gray-kplc-prod.cdn.arcpublishing.com/resizer/v2/F37IL6VBABLLBB5IMJAMEZKBNI.jpg?auth=2d7fa51aafb7768ffb65b3335c91f34823d4b9bf4607d3cf038732b9f718a3ea&width=1200&height=600&smart=true" alt="">
+            <div class="content">
+                
+                <div class="author">PLAYER</div>
+                <div class="title">BRANDIN PODZIEMSKI </div>
+                <div class="topic">2</div>
+                <div class="dis">Brandin Podziemski, born in 2003 in Illinois, is a talented college basketball player known for his scoring ability. Initially enrolling at the University of Illinois, he transferred to Santa Clara University, bringing his impressive perimeter shooting skills. As a guard, Podziemski has shown potential<span id="dots">...</span> 
+                    <span id="more"> with his offensive versatility and playmaking. His journey through collegiate basketball has been marked by notable performances and continuous development.
+                    </samp>
+    
+                   </div> 
+                <div class="buttons">
+                    <button id="read"  onclick="see_more()">SEE MORE</button>
+                    <button> <a style="text-decoration: none; color: white;" href="https://www.instagram.com/iab_podz/">CONTACT</a></button>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="item">
+            <img src="https://www.si.com/.image/t_share/MjAyNDU1MTg3NTM1NzAxMDA0/usatsi_21967117.jpg" alt="">
+            <div class="content">
+                
+                <div class="author">PLAYER</div>
+                <div class="title">DARIO SARIC </div>
+                <div class="topic">20</div>
+                <div class="dis">Dario Šarić, born on April 8, 1994, in Šibenik, Croatia, is a skilled forward known for his versatility in the NBA. Initially drafted by the Orlando Magic in 2014, he's had stints with the Philadelphia 76ers, Minnesota Timberwolves, and Phoenix Suns. Šarić's blend of size, shooting, and passing ability makes him a valuable stretch four<span id="dots">...</span> 
+                    <span id="more"> in the league. Recognized for his high basketball IQ and team-oriented play, he has been a consistent contributor throughout his NBA career.
+                    </samp>
+    
+                   </div> 
+                <div class="buttons">
+                    <button id="read"  onclick="see_more()">SEE MORE</button>
+                    <button> <a style="text-decoration: none; color: white;" href="https://www.instagram.com/megalodon20/">CONTACT</a></button>
+                </div>
+            </div>
+
+        </div>
+
+
+
+    
+        <div class="item">
+            <img src="https://i0.wp.com/www.thedailyhoosier.com/wp-content/uploads/2023/12/TJD-Trayce-Jackson-Davis.jpg?fit=1080%2C720&ssl=1" alt="">
+            <div class="content">
+                
+                <div class="author">PLAYER</div>
+                <div class="title">TRAYCE JACKSON-DAVIS </div>
+                <div class="topic">32</div>
+                <div class="dis">Trayce Jackson-Davis, born on February 22, 2000, in Greenwood, Indiana, is a standout college basketball player for the Indiana Hoosiers. Known for his athleticism and prowess in the post, he has been a key<span id="dots">...</span> 
+                    <span id="more"> player in the Big Ten Conference. Jackson-Davis has earned recognition for his shot-blocking and scoring ability. His impact on both ends of the court has made him one of the top players in college basketball.
+                    </samp>
+    
+                   </div> 
+                <div class="buttons">
+                    <button id="read"  onclick="see_more()">SEE MORE</button>
+                    <button> <a style="text-decoration: none; color: white;" href="https://www.instagram.com/trayce.jackson/">CONTACT</a></button>
+                </div>
+            </div>
+
+        </div>
+
+    
+        <div class="item">
+            <img src="https://www.mercurynews.com/wp-content/uploads/2022/05/BNG-L-WARRIORS-0502-11.jpg?w=466" alt="">
+            <div class="content">
+                
+                <div class="author">COACH</div>
+                <div class="title">STEVE KERR </div>
+                <div class="topic"></div>
+                <div class="dis">Steve Kerr, born on September 27, 1965, in Beirut, Lebanon, is the highly successful head coach of the Golden State Warriors in the NBA. A former NBA player, Kerr has led the Warriors to multiple championships, renowned for his innovative coaching style and team-oriented system<span id="dots">...</span> 
+                    <span id="more"> His tenure with the Warriors is marked by the development of a dynamic, three-point shooting offense. Kerr's leadership and basketball acumen have solidified his reputation as one of the top coaches in the league.
+                    </samp>
+    
+                   </div> 
+                <div class="buttons">
+                    <button id="read"  onclick="see_more()">SEE MORE</button>
+                    <button> <a style="text-decoration: none; color: white;" href="#">CONTACT</a></button>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+    </div>
 
         <!-- thumbnail -->
 
@@ -101,35 +293,181 @@ home
             <div class="item">
                 <img src="https://i.pinimg.com/736x/de/43/8c/de438c72d6f9f3ef74fde5a8aec0a3d3.jpg" alt="">
                 <div class="content">
-                 <div class="title">Klay Thompson</div>
-                    <div class="dis">GUARD</div>     
-               
+                    <div class="title">KLAY THOMPSON
+                    </div>
+                    <div class="dis">11</div>
+
                 </div>
             </div>
             <div class="item">
                 <img src="https://www.usatoday.com/gcdn/presto/2022/06/11/USAT/c8c4ebbc-4d18-45fa-abfc-f0316310ffdc-2022-06-10_Draymond_Green.jpg?crop=1987,1490,x673,y76" alt="">
                 <div class="content">
-                    <div class="title">Draymond Green</div>
-                    <div class="dis">FORWARD/CENTER</div>
+                    <div class="title">DRAYMOND GREEN
+                    </div>
+                    <div class="dis">23</div>
+
                 </div>
             </div>
             <div class="item">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeFap0etPpQSlabN4MnoenYW1LwnwyuVUZiz9dM_PTtQ4gEsdksy1nxIGLRKxgzffawr8&usqp=CAU" alt="">
+                <img src="http://res.cloudinary.com/ybmedia/image/upload/c_crop,h_1123,w_2000,x_0,y_0/c_fill,f_auto,h_900,q_auto,w_1600/v1/m/0/6/0616387fec3f0d98a1a9f7a123f4eaf53ea75e67/former-warriors-blast-jonathan-kuminga-over-rift.jpg" alt="">
                 <div class="content">
-                    <div class="title">Jonathan Kuminga</div>
-                    <div class="dis">FORWARD</div>
+                    <div class="title">DRAYMOND GREEN
+
+                    </div>
+                    <div class="dis">00</div>
 
                 </div>
             </div>
 
+            <div class="item">
+                <img src="https://imengine.prod.srp.navigacloud.com/?uuid=38336138-3261-4438-a664-376365356261&type=primary&q=75&width=1024" alt="">
+                <div class="content">
+                    <div class="title">CHRIS PAUL
+                    </div>
+                    <div class="dis">3</div>
+
+                </div>
+            </div>
+
+
+            <div class="item">
+                <img src="https://www.gannett-cdn.com/usatsimg/image/thumb/1200-1200nw/19822255.jpg" alt="">
+                <div class="content">
+                    <div class="title">KEVON LOONEY
+                    </div>
+                    <div class="dis">5</div>
+
+                </div>
+            </div>
+
+
+
+            <div class="item">
+                <img src="https://cdn.vox-cdn.com/thumbor/7E_9LTHAFT1TIHICfQu0ilLEKiw=/0x0:4829x3219/1200x800/filters:focal(2955x20:3727x792)/cdn.vox-cdn.com/uploads/chorus_image/image/70192247/1236784501.0.jpg" alt="">
+                <div class="content">
+                    <div class="title">ANDREW WIGGINS</div>
+                    <div class="dis">22</div>
+
+                </div>
+            </div>
+      
+
+            <div class="item">
+                <img src="https://cdn.nba.com/teams/legacy/www.nba.com/warriors/sites/warriors/files/moody_1280_1.jpg" alt="">
+                <div class="content">
+                    <div class="title">MOSES MOODY
+                    </div>
+                    <div class="dis">4</div>
+
+                </div>
+            </div>
+
+
+
+
+        
+            <div class="item">
+                <img src="https://images2.minutemediacdn.com/image/fetch/https%3A%2F%2Fraptorsrapture.com%2Fwp-content%2Fuploads%2Fgetty-images%2F2021%2F12%2F1353521287.jpeg" alt="">
+                <div class="content">
+                    <div class="title">GARY PAYTON II
+
+</div>
+                    <div class="dis">0</div>
+
+                </div>
+            </div>
+
+
+
+            <div class="item">
+                <img src="https://gray-kplc-prod.cdn.arcpublishing.com/resizer/v2/F37IL6VBABLLBB5IMJAMEZKBNI.jpg?auth=2d7fa51aafb7768ffb65b3335c91f34823d4b9bf4607d3cf038732b9f718a3ea&width=1200&height=600&smart=true" alt="">
+                <div class="content">
+                    <div class="title">BRANDIN PODZIEMSKI
+
+
+                    </div>
+                    <div class="dis">2</div>
+
+                </div>
+            </div>
+
+
+
+            <div class="item">
+                <img src="https://www.si.com/.image/t_share/MjAyNDU1MTg3NTM1NzAxMDA0/usatsi_21967117.jpg" alt="">
+                <div class="content">
+                    <div class="title">DARIO SARIC
+
+
+
+                    </div>
+                    <div class="dis">20</div>
+
+                </div>
+            </div>
+
+
+
+        
+            <div class="item">
+                <img src="https://i0.wp.com/www.thedailyhoosier.com/wp-content/uploads/2023/12/TJD-Trayce-Jackson-Davis.jpg?fit=1080%2C720&ssl=1" alt="">
+                <div class="content">
+                    <div class="title">TRAYCE JACKSON-DAVIS
+
+
+                    </div>
+                    <div class="dis">32</div>
+
+                </div>
+            </div>
+
+
+            <div class="item">
+                <img src="https://www.mercurynews.com/wp-content/uploads/2022/05/BNG-L-WARRIORS-0502-11.jpg?w=466" alt="">
+                <div class="content">
+                    <div class="title">STEVE KERR
+                    </div>
+                    <div class="dis">COACH</div>
+
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+            <div class="item">
+                <img style="bottom: 0;" src="https://i.pinimg.com/736x/96/54/a7/9654a77558dbe1fdecde8f0e0e4ab5a0.jpg" alt="">
+                <div class="content">
+                    <div class="title">STEPHEN CURRY
+                    </div>
+                    <div class="dis">30</div>
+
+                </div>
+            </div>
+
+          
+
+
+
+
+
+
+
+<!-- 
             <div class="item">
                 <img style="bottom: 0;"src="https://i.pinimg.com/736x/96/54/a7/9654a77558dbe1fdecde8f0e0e4ab5a0.jpg" alt="">
                 <div class="content">
-                    <div class="title">Stephen Curry</div>
-                    <div class="dis">GUARD</div>
+                    <div class="title">Name Slider</div>
+                    <div class="dis">Description</div>
 
                 </div>
-            </div>
+            </div> -->
         </div>
 
         <!-- arrows -->
@@ -155,9 +493,11 @@ home
 
 
 
-    <script type="text/javascript">
    
-   let nextDom = document.getElementById('next');
+
+    <script type="text/javascript">
+
+let nextDom = document.getElementById('next');
 let prevDom = document.getElementById('prev');
 let carouselDom =document.querySelector('.carousel');
 let listItemDom =document.querySelector('.carousel .list');
@@ -227,6 +567,5 @@ function see_more(){
         i=0;
     }
 }
-
-    </script>
+  </script>
     {%endblock%}
