@@ -124,3 +124,20 @@ button:hover {
     float: left;
     clear: both;
 }
+
+
+/* .sender:hover {
+    cursor: pointer; /* Changes the cursor to a pointer */
+/* }  */
+
+
+.message-action {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: transparent;
+}
+
+.message-action option {
+    color: black; /* Ensure options are visible when dropdown is expanded */
+}

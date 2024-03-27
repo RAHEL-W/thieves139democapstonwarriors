@@ -376,3 +376,38 @@ def chat():
     users = User.query.filter(User.id != current_user.id).all()
 
     return render_template('message.html', users=users)
+
+
+
+
+
+
+@main.route('/edit_message/<int:message_id>', methods=['POST'])
+@login_required
+def edit_message(message_id):
+    new_text = request.form.get('new_text')
+    message = Message.query.get_or_404(message_id)
+
+    if message.sender_id != current_user.id:
+        return jsonify({'status': 'error', 'message': 'Unauthorized'}), 403
+
+    if new_text:
+        message.text = new_text
+        db.session.commit()
+        return jsonify({'status': 'success', 'message': 'Message updated'})
+
+    return jsonify({'status': 'error', 'message': 'No new text provided'})
+
+
+
+@main.route('/delete_message/<int:message_id>', methods=['POST'])
+@login_required
+def delete_message(message_id):
+    message = Message.query.get_or_404(message_id)
+
+    if message.sender_id != current_user.id:
+        return jsonify({'status': 'error', 'message': 'Unauthorized'}), 403
+
+    db.session.delete(message)
+    db.session.commit()
+    return jsonify({'status': 'success', 'message': 'Message deleted'})

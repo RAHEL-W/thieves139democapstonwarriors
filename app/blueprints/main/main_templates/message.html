@@ -32,50 +32,108 @@ Chat
     var currentUserId; // Declare the variable first
 </script>
 
-<script>
-    // Assign Flask variable to JavaScript variable
-    currentUserId = {{ current_user.id | tojson }};
-</script>
-
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    $(document).ready(function() {
-        $('#chat-form').submit(function(e) {
-            e.preventDefault();
-            const message = $('#message-input').val();
-            const recipient_id = $('#recipient-select').val();
-            $.post('/send', { message: message, recipient_id: recipient_id }, function(response) {
-                if(response.status === 'success') {
-                    $('#message-input').val('');
-                    fetchMessages();
-                }
-            });
-        });
+var currentUserId = {{ current_user.id | tojson }};
 
-        function fetchMessages() {
+// Function to fetch and display messages
+function fetchMessages() {
     $.get('/receive', function(data) {
         $('#messages').empty();
         data.forEach(function(message) {
-            var messageText = message.is_sender ? (message.text + ' : Me') : (message.sender_username + ' : ' + message.text);
-            var messageClass = message.is_sender ? 'sender' : 'receiver';
-            var displayMessage = '<div class="' + messageClass + '">' + messageText + '</div>';
+            var isSender = message.sender_id == currentUserId;
+            var messageText = isSender ? (message.text + ' : Me') : (message.sender_username + ' : ' + message.text);
+            var messageClass = isSender ? 'sender' : 'receiver';
+            var displayMessage = '<div class="' + messageClass + '">' + messageText;
+
+                if (isSender) {
+            displayMessage += `<select class="message-action" data-id="${message.id}" onchange="this.style.color='black'">
+                                  <option value="" disabled selected hidden></option> <!-- Initially empty and hidden option -->
+                                  <option value="edit">Edit</option>
+                                  <option value="delete">Delete</option>
+                               </select>`;
+        }
+
+            displayMessage += '</div>';
             $('#messages').append(displayMessage);
         });
-        scrollToBottom(); // Scroll to the bottom after loading messages
+        scrollToBottom();
     });
 }
+
+// Scroll to the bottom of the messages
 function scrollToBottom() {
     var messages = document.getElementById("messages");
     messages.scrollTop = messages.scrollHeight;
 }
 
-document.addEventListener("DOMContentLoaded", scrollToBottom);
-
-// Call this function on page load and after fetching new messages
-document.addEventListener("DOMContentLoaded", scrollToBottom);
-
-
-        setInterval(fetchMessages, 2000); // Fetch messages every 2 seconds
+$(document).ready(function() {
+    $('#chat-form').submit(function(e) {
+        e.preventDefault();
+        if(editingMessageId !== null) {
+            submitEdit(editingMessageId);
+        } else {
+            sendMessage();
+        }
     });
+
+    // Send a new message
+    function sendMessage() {
+        const message = $('#message-input').val();
+        const recipient_id = $('#recipient-select').val();
+        $.post('/send', { message: message, recipient_id: recipient_id }, function(response) {
+            if(response.status === 'success') {
+                $('#message-input').val('');
+                fetchMessages();
+            }
+        });
+    }
+
+    // Start editing a message
+    function startEditing(messageId, currentText) {
+        $('#message-input').val(currentText.split(' : Me')[0]); // Extract the message text
+        editingMessageId = messageId;
+    }
+
+    // Submit edited message
+    function submitEdit(messageId) {
+        var newText = $('#message-input').val();
+        $.post('/edit_message/' + messageId, { new_text: newText }, function(response) {
+            if(response.status === 'success') {
+                editingMessageId = null;
+                $('#message-input').val('');
+                fetchMessages();
+            }
+        });
+    }
+
+    // Delete a message
+    function deleteMessage(messageId) {
+        $.post('/delete_message/' + messageId, {}, function(response) {
+            if(response.status === 'success') {
+                fetchMessages();
+            }
+        });
+    }
+
+    // Event delegation for edit and delete options in dropdown
+    $('#messages').on('change', '.message-action', function() {
+        var selectedAction = $(this).val();
+        var messageId = $(this).data('id');
+        
+        if (selectedAction === 'edit') {
+            var currentText = $(this).closest('div').text();
+            startEditing(messageId, currentText);
+        } else if (selectedAction === 'delete') {
+            deleteMessage(messageId);
+        }
+        
+        $(this).val(''); // Reset the dropdown
+    });
+
+    setInterval(fetchMessages, 2000); // Fetch messages every 2 seconds
+});
+
+var editingMessageId = null; // ID of the message being edited
 </script>
 {% endblock %}
