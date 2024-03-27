@@ -11,6 +11,8 @@ feed
 
 
 {% block content%}
+
+{%if posts %}
 {%for post in posts%}
 
 <div class="kard">
@@ -30,4 +32,46 @@ feed
   </div>
 </div>
 {%endfor%}
+{%endif%}
+
+{%if Events%}
+{%for event in Events%}
+
+
+
+    <div class="cardd text-center">
+        
+            <div class="caption">
+         
+            </div>
+          
+           <div class="card-bodyy">
+            <div class="imagee" >
+                <img src="{{event.opponent_img}}" alt="{{event.opponent}}">
+                <img src="{{event.opponent_img2}}" alt="{{event.opponent2}}">
+              
+            </div>
+            <h5 class="card-title">{{event.opponent}}  vs  {{event.opponent2}}</h5>
+          
+     
+        <h5 style="margin: 10px 0 ; ">{{event.date}}</h5> 
+        <h4>{{event.caption}}</h4>
+
+
+        {%if event.user_id == current_user.id %}
+        <div class="edit">
+          <a href="{{ url_for('main.edit_event', event_id=event.id) }}" class="btn text-info">Edit</a>
+          <a href="{{ url_for('main.delete_event', event_id=event.id) }}" class="btn text-danger">Delete</a>
+      </div>
+        {%endif%}
+
+    </div>
+    <div class="card-footer text-body-secondary">
+      
+    </div>
+  </div>
+
+    
+{%endfor%}
+{%endif%}
 {%endblock%}

@@ -118,3 +118,29 @@ class Message(db.Model):
 
     def __repr__(self):
         return '<Message {}>'.format(self.text)        
+    
+
+
+class EventPost(db.Model):
+    id = db.Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    place = db.Column (db.String(400))
+    caption = db.Column (db.String(1000),nullable=True)
+    date=db.Column(db.String)
+    opponent=db.Column(db.String)
+    opponent2=db.Column(db.String)
+    opponent_img=db.Column(db.String(300))
+    opponent_img2= db.Column(db.String(300))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'),nullable=False ) 
+    def __init__(self,  place, user_id , caption, date,opponent, opponent2, opponent_img,opponent_img2):
+       
+        self.place = place
+        self.user_id = user_id
+        self.caption = caption
+        self.date = date
+        self.opponent = opponent
+        self.opponent2 = opponent2
+        self.opponent_img = opponent_img
+        self.opponent_img2 = opponent_img2
+    def save(self):
+        db.session.add(self)
+        db.session.commit()  

@@ -27,6 +27,7 @@ feed
      
       <a href="{{ url_for('main.invite', save_game_date=SaveGame.date) }}" class="btn btn-primary">Invite friends</a>
       <a href="{{url_for('main.delete_savegame', save_game_date=SaveGame.date) }}" class="btn text-info">Delete</a>
+      <a href="{{ url_for('main.post_savegame', save_game_date=SaveGame.date) }}" class="btn text-info">Post</a>
     </div>
     <div class="card-footer text-body-secondary">
       2 days ago
@@ -52,7 +53,7 @@ feed
          
 
      <a href="{{url_for('main.delete_invitation', invitation_date=UserInvitation.date) }}" class="btn text-info">Dicline</a>
- 
+    
 
     </div>
     <div class="card-footer text-body-secondary">

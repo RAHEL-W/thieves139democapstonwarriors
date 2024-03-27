@@ -1,8 +1,8 @@
 from flask import redirect,render_template,url_for, request, flash 
 from . import post
-from .forms import CreateEventPost, CreatePost
+from .forms import  CreatePost
 from flask_login import login_required, current_user
-from app.models import  db, Post
+from app.models import  db, Post,EventPost
 
 
 
@@ -37,7 +37,8 @@ def create_post():
 @post.route('/feed')   
 def feed():
     posts = Post.query.all()
-    return render_template('feed.html', posts=posts)
+    Events= EventPost.query.all()
+    return render_template('feed.html', posts=posts, Events=Events)
 
 
 

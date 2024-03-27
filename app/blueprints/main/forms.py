@@ -12,5 +12,9 @@ class InviteForm(FlaskForm):
     submit_btn = SubmitField('invite frends')
 
 
+class PostsavegameForm(FlaskForm):
+    place = StringField('email', validators=[DataRequired()])
+    caption = StringField('caption', validators=[DataRequired()])
+    submit_btn = SubmitField('post event')
 
       

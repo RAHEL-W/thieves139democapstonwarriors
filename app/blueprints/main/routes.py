@@ -1,10 +1,10 @@
 from flask import render_template, redirect, url_for, flash,request, jsonify
 import requests
 from . import main
-from app.models import User,db,SaveGame, UserInvitation, Message
+from app.models import User,db,SaveGame, UserInvitation, Message, EventPost
 from flask_login import login_required, current_user
 from datetime import datetime
-from .forms import InviteForm
+from .forms import InviteForm, PostsavegameForm
 
 @main.route('/')
 def home():
@@ -283,8 +283,7 @@ def invite(save_game_date):
 
         flash('Successful! Invite sent.', 'success')
 
-        # else:
-        # flash('SaveGame not found.', 'error')
+    
 
         return redirect(url_for('main.save'))
     else:
@@ -411,3 +410,77 @@ def delete_message(message_id):
     db.session.delete(message)
     db.session.commit()
     return jsonify({'status': 'success', 'message': 'Message deleted'})
+
+
+
+
+
+@main.route('/post_savegame/<save_game_date>', methods=["GET", "POST"])
+@login_required
+def post_savegame(save_game_date):
+    form = PostsavegameForm()
+
+    save_game = SaveGame.query.filter_by(date=save_game_date).first_or_404()
+
+    if form.validate_on_submit():
+        new_event_post = EventPost(
+            place=form.place.data,
+            caption=form.caption.data,
+            user_id=current_user.id,
+            date=save_game.date, 
+            opponent=save_game.opponent,
+            opponent2=save_game.opponent2,
+            opponent_img=save_game.opponent_img,
+            opponent_img2=save_game.opponent_img2
+        )
+        db.session.add(new_event_post)
+        db.session.commit()
+
+        flash('Successful! Event Post.', 'success')
+        return redirect(url_for('post.feed'))  # Adjust the redirect as needed
+
+    return render_template('eventpost.html', form=form, save_game=save_game)
+
+
+
+
+@main.route('/edit_event/<event_id>', methods=['GET', 'POST'])
+@login_required
+def edit_event(event_id):
+    event = EventPost.query.get(event_id)
+    if not event:
+        flash("Event not found!", "danger")
+        return redirect(url_for('main.feed'))
+
+    if event.user_id != current_user.id:
+        flash("You do not have permission to edit this event.", "danger")
+        return redirect(url_for('main.feed'))
+
+    form = PostsavegameForm(obj=event)
+    if form.validate_on_submit():
+        event.caption = form.caption.data
+        event.place = form.place.data
+        # ... any other fields to update ...
+        db.session.commit()
+        flash('Event successfully updated!', 'info')
+        return redirect(url_for('post.feed'))
+
+    return render_template('editeventpost.html', form=form, event=event)
+ 
+    
+
+
+
+
+@main.route('/delete_event/<event_id>')  
+@login_required
+def delete_event(event_id):
+    event = EventPost.query.get(event_id) 
+    if event and event.user_id == current_user.id:
+        db.session.delete(event)
+        db.session.commit()
+        flash(' event is succefully deleted', 'danger')
+        return redirect(url_for('post.feed'))
+    else:
+        flash('this event it doesn\'t belong to you','danger')
+        return redirect(url_for('post.feed')) 
