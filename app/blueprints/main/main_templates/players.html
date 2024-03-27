@@ -19,7 +19,7 @@ home
     <div class="list">
         <!-- items -->
         <div class="item">
-            <img style="bottom: 0;" src="https://i.pinimg.com/736x/96/54/a7/9654a77558dbe1fdecde8f0e0e4ab5a0.jpg" alt="">
+            <img style="bottom: 0;" src="https://www.mercurynews.com/wp-content/uploads/2023/12/BNG-L-WARRIORS-1220-22.jpg?w=1344" alt="">
             <div class="content">
                 
                 <div class="author">Player</div>
@@ -459,18 +459,10 @@ home
 
 
 
-<!-- 
-            <div class="item">
-                <img style="bottom: 0;"src="https://i.pinimg.com/736x/96/54/a7/9654a77558dbe1fdecde8f0e0e4ab5a0.jpg" alt="">
-                <div class="content">
-                    <div class="title">Name Slider</div>
-                    <div class="dis">Description</div>
 
-                </div>
-            </div> -->
         </div>
 
-        <!-- arrows -->
+
         <div class="arrows">
             <button id="prev"><</button>
             <button id="next">></button>
@@ -494,78 +486,62 @@ home
 
 
    
-
     <script type="text/javascript">
 
-let nextDom = document.getElementById('next');
-let prevDom = document.getElementById('prev');
-let carouselDom =document.querySelector('.carousel');
-let listItemDom =document.querySelector('.carousel .list');
-let thumbnailDom = document.querySelector('.carousel .thumbnail')
-
-
-
-nextDom.onclick = function(){
-    showSlider('next');
-
-}
-
-prevDom.onclick =function(){
-    showSlider('prev')
-}
-
-let timeRunning = 3000;
-let timeAutoNext =7000;
-let runTimeOut;
-let runAutoRun = setTimeout( ()=>{
-    nextDom.click();
-}, timeAutoNext);
-
-function showSlider(type){
-    let itemSlider = document.querySelectorAll('.carousel .list .item');
-    let itemThumbnail = document.querySelectorAll('.carousel .thumbnail  .item');
-
-
-    if (type === 'next'){
-        listItemDom.appendChild(itemSlider[0]);
-        thumbnailDom.appendChild(itemThumbnail[0]);
-        carouselDom.classList.add('next');
+        let nextDom = document.getElementById('next');
+        let prevDom = document.getElementById('prev');
+        let carouselDom = document.querySelector('.carousel');
+        let listItemDom = document.querySelector('.carousel .list');
+        let thumbnailDom = document.querySelector('.carousel .thumbnail')
         
-    }
-    else{
-        let positionLastItem = itemSlider.length -1;
-        listItemDom.prepend(itemSlider[positionLastItem])
-        thumbnailDom.prepend(itemThumbnail[positionLastItem])  
-        carouselDom.classList.add('prev');
-    }
-    clearTimeout(runTimeOut);
-    runTimeOut = setTimeout(() =>{
-        carouselDom.classList.remove('next');
-        carouselDom.classList.remove('prev');
-    }, timeRunning)
-}
-
-
-clearTimeout(runAutoRun);
-runAutoRun = setTimeout( ()=>{
-    nextDom.click();
-}, timeAutoNext);
-
-
-let i=0;
-function see_more(){
-    if (!i){
-        document.getElementById('more').style. display="inline";
-        document.getElementById('dots').style. display="none";
-        document.getElementById('read').innerHTML = "SEE LESS";
-        i=1;
-    }
-    else{
-        document.getElementById('more').style. display="none";
-        document.getElementById('dots').style. display="inline";
-        document.getElementById('read').innerHTML = "SEE MORE";
-        i=0;
-    }
-}
-  </script>
+        nextDom.onclick = function(){
+            showSlider('next');
+        }
+        
+        prevDom.onclick = function(){
+            showSlider('prev')
+        }
+        
+        let timeRunning = 3000;
+        let runTimeOut;
+        
+        function showSlider(type){
+            let itemSlider = document.querySelectorAll('.carousel .list .item');
+            let itemThumbnail = document.querySelectorAll('.carousel .thumbnail  .item');
+        
+            if (type === 'next'){
+                listItemDom.appendChild(itemSlider[0]);
+                thumbnailDom.appendChild(itemThumbnail[0]);
+                carouselDom.classList.add('next');
+            } else {
+                let positionLastItem = itemSlider.length - 1;
+                listItemDom.prepend(itemSlider[positionLastItem])
+                thumbnailDom.prepend(itemThumbnail[positionLastItem])  
+                carouselDom.classList.add('prev');
+            }
+        
+            clearTimeout(runTimeOut);
+            runTimeOut = setTimeout(() =>{
+                carouselDom.classList.remove('next');
+                carouselDom.classList.remove('prev');
+            }, timeRunning)
+        }
+        
+        function see_more(){
+            let moreText = document.getElementById('more');
+            let dots = document.getElementById('dots');
+            let buttonText = document.getElementById('read');
+        
+            if (moreText.style.display === "none") {
+                moreText.style.display = "inline";
+                dots.style.display = "none";
+                buttonText.innerHTML = "SEE LESS";
+            } else {
+                moreText.style.display = "none";
+                dots.style.display = "inline";
+                buttonText.innerHTML = "SEE MORE";
+            }
+        }
+        
+        </script>
     {%endblock%}
