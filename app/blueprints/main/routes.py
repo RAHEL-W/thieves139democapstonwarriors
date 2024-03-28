@@ -294,10 +294,15 @@ def invite(save_game_date):
 @main.route('/save') 
 @login_required  
 def save():
-    SaveGames = SaveGame.query.filter_by(user_id = current_user.id).all()
+    SaveGames = SaveGame.query.filter_by(user_id=current_user.id).all()
     UserInvitations = UserInvitation.query.filter_by(email=current_user.email).all()
-    # invitegame= SaveGame.query.filter_by(date=date).all()
-    return render_template('savegame.html', SaveGames=SaveGames ,  UserInvitations=UserInvitations)
+
+    sender_details = {}
+    for invitation in UserInvitations:
+        sender = User.query.filter_by(id=invitation.invited_by_user_id).first()
+        sender_details[invitation.id] = sender.username 
+
+    return render_template('savegame.html', SaveGames=SaveGames, UserInvitations=UserInvitations, sender_details=sender_details)
 
 
 

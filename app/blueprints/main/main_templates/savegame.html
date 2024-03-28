@@ -23,7 +23,7 @@ feed
             <img src="{{SaveGame.opponent_img}}" alt="{{SaveGame.opponent}}">
             <img src="{{SaveGame.opponent_img2}}" alt="{{SaveGame.opponent2}}">
         </div>
-      <h5 class="card-title">{{SaveGame.opponent}}  {{SaveGame.opponent2}}</h5>
+      <h5 class="card-title">{{SaveGame.opponent}}  vs  {{SaveGame.opponent2}}</h5>
      
       <a href="{{ url_for('main.invite', save_game_date=SaveGame.date) }}" class="btn btn-primary">Invite friends</a>
       <a href="{{url_for('main.delete_savegame', save_game_date=SaveGame.date) }}" class="btn text-info">Delete</a>
@@ -40,17 +40,17 @@ feed
     {% for UserInvitation in UserInvitations %}
     <div class="card text-center">
         <div class="card-header">
-            {{UserInvitation.caption}}
-            
+           
+           {{UserInvitation.date}}
         </div>
         <div class="card-body">
             <div class="image">
                 <img src="{{UserInvitation.opponent_img}}" alt="{{UserInvitation.opponent}}">
                 <img src="{{UserInvitation.opponent_img2}}" alt="{{UserInvitation.opponent2}}">
             </div>
-          <h5 class="card-title">{{UserInvitation.opponent}}  {{UserInvitation.opponent2}}</h5>
-        <h5>{{UserInvitation.date}}</h5> 
-         
+          <h5 class="card-title">{{UserInvitation.opponent}}  vs  {{UserInvitation.opponent2}}</h5>
+         <p> {{UserInvitation.caption}}</p>
+        <p>Invited by: {{ sender_details[UserInvitation.id] }}</p>
 
      <a href="{{url_for('main.delete_invitation', invitation_date=UserInvitation.date) }}" class="btn text-info">Dicline</a>
     

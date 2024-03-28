@@ -9,47 +9,47 @@
       <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active text-white" aria-current="page"href="{{url_for('main.home') }}">Home</a>
+            <a class="nav-link active text-white" aria-current="page"href="{{url_for('main.home') }}">HOME</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active text-white" aria-current="page" href="{{url_for('main.players')}}">players</a>
+            <a class="nav-link active text-white" aria-current="page" href="{{url_for('main.players')}}">PLAYERS</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active text-white" aria-current="page" href="{{url_for('main.roster')}}">Roster</a>
+            <a class="nav-link active text-white" aria-current="page" href="{{url_for('main.roster')}}">ROSTE</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active text-white" aria-current="page" href="{{url_for('main.schedule')}}">Schedule</a>
+            <a class="nav-link active text-white" aria-current="page" href="{{url_for('main.schedule')}}">SCHEDULE</a>
           </li>
          
           <li class="nav-item">
-            <a class="nav-link active text-white" aria-current="page" href="{{url_for('post.feed')}}">feed</a>
+            <a class="nav-link active text-white" aria-current="page" href="{{url_for('post.feed')}}">POST</a>
           </li>
           
           {% if current_user.is_anonymous%}
           <li class="nav-item">
-            <a class="nav-link active text-white" aria-current="page" href="{{url_for('auth.signup')}}">Sign up</a>
+            <a class="nav-link active text-white" aria-current="page" href="{{url_for('auth.signup')}}">SIGNUP</a>
           </li>
          
           <li class="nav-item">
-            <a class="nav-link active text-white" aria-current="page" href="{{url_for('auth.login')}}">Login</a>
+            <a class="nav-link active text-white" aria-current="page" href="{{url_for('auth.login')}}">LOGIN</a>
           </li>
           
           {%else%}
         
          
           <li class="nav-item">
-            <a class="nav-link active text-white" aria-current="page" href="{{url_for('post.create_post')}}">CreatePost</a>
+            <a class="nav-link active text-white" aria-current="page" href="{{url_for('post.create_post')}}">CREATPOST</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active text-white" aria-current="page" href="{{url_for('main.save')}}">savegame</a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link active text-white" aria-current="page" href="{{url_for('main.chat')}}">chat</a>
+            <a class="nav-link active text-white" aria-current="page" href="{{url_for('main.save')}}">SAVEGAME</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link active text-white" aria-current="page" href="{{url_for('auth.logout')}}">Logout</a>
+            <a class="nav-link active text-white" aria-current="page" href="{{url_for('main.chat')}}">CHAT</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link active text-white" aria-current="page" href="{{url_for('auth.logout')}}">LOGOUT</a>
           </li>
           {%endif%}
         </ul>
